@@ -30,10 +30,10 @@ bot.command('/frase', (ctx) => {
 });
 bot.command('/pregunta', (ctx) => {
 	let arr_botones = [
-		Markup.callbackButton('a', 'falsa'),
-		Markup.callbackButton('b', 'falsa'),
-		Markup.callbackButton('c', 'falsa'),
-		Markup.callbackButton('d', 'falsa'),
+		Markup.callbackButton('respuesta a', 'falsa'),
+		Markup.callbackButton('respuesta b', 'falsa'),
+		Markup.callbackButton('respuesta c', 'falsa'),
+		Markup.callbackButton('respuesta d', 'falsa'),
 	];
 
 	let extra = Markup.inlineKeyboard(arr_botones).extra();
