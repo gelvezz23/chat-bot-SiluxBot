@@ -46,7 +46,7 @@ bot.command('/spam', (ctx) => {
 });
 
 const getRamdonPhrase = () => {
-	let content = fs.readFileSync('../salidas/phrases.txt');
+	let content = fs.readFileSync('./salidas/phrases.txt');
 	let frases = content.toString().split('\n');
 	return frases[Math.floor(Math.random() * frases.length)];
 };
