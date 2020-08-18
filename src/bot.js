@@ -14,10 +14,10 @@ const bot = new Telegraf(Token, {
 	username: 'SiluxBot',
 	polling: true,
 });
-expressApp.use(bot.webhookCallback('/ruta-bot'));
-bot.telegram.setWebhook(`${process.env.URL_RUN}/ruta-bot`);
+expressApp.use(bot.webhookCallback('/'));
+bot.telegram.setWebhook(`${process.env.URL_RUN}/`);
 
-expressApp.post('ruta-bot', (req, res) => {
+expressApp.post('/', (req, res) => {
 	res.send('Llamada a la ruta ');
 });
 
