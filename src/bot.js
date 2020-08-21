@@ -41,7 +41,6 @@ bot.command('/news', (ctx) => {
 		})
 		.then((response) => {
 			let news = response.articles[Math.floor(Math.random() * response.articles.length)];
-			// console.log(news);
 			ctx.reply(news.url);
 		});
 });
@@ -49,6 +48,7 @@ bot.command('/news', (ctx) => {
 bot.command('/frase', (ctx) => {
 	ctx.reply(getRamdonPhrase());
 });
+
 bot.command('/pregunta', (ctx) => {
 	let arr_botones = [
 		Markup.callbackButton('respuesta a', 'falsa'),
