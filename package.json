@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "node src/bot.js",
-		"dev": "nodemon src/bot.js",
+		"start": "node ./src/bot.js",
+		"dev": "nodemon ./src/bot.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
@@ -13,6 +13,8 @@
 	"dependencies": {
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
+		"newsapi": "^2.4.1",
+		"node-fetch": "^2.6.0",
 		"node-telegram-bot-api": "^0.50.0",
 		"telegraf": "^3.38.0"
 	},

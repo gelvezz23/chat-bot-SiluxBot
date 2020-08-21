@@ -5,6 +5,7 @@ const Telegraf = require('telegraf');
 const express = require('express');
 const fs = require('fs');
 const Markup = require('telegraf/markup');
+const NewsAPI = require('newsapi');
 const expressApp = express();
 require('dotenv').config();
 
@@ -14,15 +15,35 @@ const bot = new Telegraf(Token, {
 	username: 'SiluxBot',
 	polling: true,
 });
-expressApp.use(bot.webhookCallback('/'));
-bot.telegram.setWebhook(`${process.env.URL_RUN}/`);
 
-expressApp.post('/', (req, res) => {
+bot.use(async (ctx, next) => {
+	const start = new Date();
+	await next();
+	const ms = new Date() - start;
+	console.log('Response time: %sms', ms);
+});
+
+expressApp.get('/', (req, res) => {
 	res.send('Llamada a la ruta ');
 });
 
 expressApp.listen(process.env.PORT || 5000, () => {
-	console.log('El servidor esta escuchando');
+	console.log('El servidor esta escuchando port:' + process.env.PORT);
+});
+
+bot.command('/news', (ctx) => {
+	const newsapi = new NewsAPI(process.env.API_KEY_NEWSAPI);
+
+	newsapi.v2
+		.topHeadlines({
+			category: 'technology',
+			country: 'co',
+		})
+		.then((response) => {
+			let news = response.articles[Math.floor(Math.random() * response.articles.length)];
+			// console.log(news);
+			ctx.reply(news.url);
+		});
 });
 
 bot.command('/frase', (ctx) => {
@@ -95,13 +116,6 @@ bot.hashtag(
 		);
 	}
 );
-
-bot.use(async (ctx, next) => {
-	const start = new Date();
-	await next();
-	const ms = new Date() - start;
-	console.log('Response time: %sms', ms);
-});
 
 // bot.on('text', (ctx) => console.log(ctx));
 
