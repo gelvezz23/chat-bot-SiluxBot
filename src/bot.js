@@ -62,6 +62,31 @@ bot.command('/pregunta', (ctx) => {
 	return bot.telegram.sendMessage(ctx.chat.id, 'mi pregunta', extra);
 });
 
+bot.command('/sorteo', (ctx) => {
+	ctx.reply(
+		'¡Hola Silux! \n\r' +
+			'Considerando el trabajo que ha realizado el semillero' +
+			'Silux durante la pandemia y las interesantes charlas' +
+			'que se han realizado, la empresa Megaterios ofreció donar' +
+			'detalles para actividades de motivación, con el fin de' +
+			'incentivar a que participen en nuestras Redes Sociales ' +
+			'y que sigamos manteniendo esta dinámica virtual del semillero.\n\r ' +
+			'Megaterios es una empresa de desarrollo de software Cucuteña,' +
+			'creada por uno de los estudiantes del grupo GNULinux UFPS,' +
+			'del cual luego apareció SILUX.' +
+			'https://www.instagram.com/megaterios.co/ \r\n' +
+			'¿Cómo participar? \r\n' +
+			'1. Debes seguirnos en todas nuestras Redes Sociales: Twitter, Youtube,' +
+			'Facebook, Instagram y Telegram (Ahora tenemos ChatBot https://t.me/siluxufps) \r\n' +
+			'2. Comparte en alguna de nuestras redes sociales cuál es el Sistema Operativo' +
+			'que usas y por qué. Envía también a Telegram para que nuestro ChatBot procese ;) \r\n' +
+			'3. Comparte en alguna de nuestras redes sociales cuál es el video que mas te' +
+			'gusta y por qué. Envía también a Telegram para que nuestro ChatBot procese ;) \r\n \r\n' +
+			'¡Los esperamos a todos! \r\n' +
+			'¡Muchas gracias a todos por confiar en nosotros y apoyarnos! \r\n'
+	);
+});
+
 bot.command('/spam', (ctx) => {
 	ctx.reply(' ¬¬ Cuidadito !! ');
 });
