@@ -3,13 +3,16 @@
 const Telegraf = require('telegraf');
 //const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
+const fetch = require('node-fetch');
 const fs = require('fs');
 const Markup = require('telegraf/markup');
 const NewsAPI = require('newsapi');
+const { memoryUsage } = require('process');
 const expressApp = express();
 require('dotenv').config();
 
 const Token = process.env.TOKEN_APP;
+const Token_giphy = process.env.API_KEY_GIPHY;
 
 const bot = new Telegraf(Token, {
 	username: 'SiluxBot',
@@ -43,6 +46,40 @@ bot.command('/news', (ctx) => {
 			let news = response.articles[Math.floor(Math.random() * response.articles.length)];
 			ctx.reply(news.url);
 		});
+});
+
+bot.command('/imagen', async (msg) => {
+	const { text } = msg.update.message;
+	const search = text.split('=');
+	const url = `https://api.giphy.com/v1/gifs/search?q=${encodeURI(
+		search[1]
+	)}&limit=10&api_key=${Token_giphy}`;
+
+	const resp = await fetch(url, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' },
+	});
+
+	const { data } = await resp.json();
+
+	let gift = data.map((img, index) => {
+		return {
+			index: index,
+			id: img.id,
+			image: img.images?.downsized_medium.url,
+			title: img.title,
+		};
+	});
+	const random = Math.floor(Math.random() * (10 - 1) + 1);
+	const sendImagen = await gift.find((data) => data.index == random);
+	if (!sendImagen) {
+		msg.reply('UPS !! No puedo encontrar eso, debe ser una busqueda muy traviesa :3');
+	} else {
+		msg.replyWithPhoto({ url: sendImagen.image });
+		gift = null;
+	}
+
+	// msg.sendPhoto(gift.image);
 });
 
 bot.command('/frase', (ctx) => {
