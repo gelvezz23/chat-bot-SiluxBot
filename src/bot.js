@@ -156,6 +156,11 @@ bot.on('text', (ctx) => {
 	if (ctx.message.text.toLowerCase() === 'mal') {
 		return ctx.reply(`Hoy no es un buen dia, Que la fuerza te acompañe`);
 	}
+	if (ctx.message.text.toLowerCase() === 'maso menos') {
+		return ctx.reply(
+			`La perfeccion no existe, eres hermoso como eres te lo juro por dieguito armando maradona  `
+		);
+	}
 });
 
 bot.on('sticker', (ctx) => {
