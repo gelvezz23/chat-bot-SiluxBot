@@ -156,7 +156,10 @@ bot.on('text', (ctx) => {
 	if (ctx.message.text.toLowerCase() === 'mal') {
 		return ctx.reply(`Hoy no es un buen dia, Que la fuerza te acompañe`);
 	}
-	if (ctx.message.text.toLowerCase() === 'maso menos') {
+	if (
+		ctx.message.text.toLowerCase() === 'mas o menos' ||
+		ctx.message.text.toLowerCase() === 'más o menos'
+	) {
 		return ctx.reply(
 			`La perfeccion no existe, eres hermoso como eres te lo juro por dieguito armando maradona  `
 		);
